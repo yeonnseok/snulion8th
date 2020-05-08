@@ -20,4 +20,7 @@ def show(request, id):
     feed = Feed.objects.get(id=id)
     return render(request, 'feedpage/show.html', {'feed': feed})
 
-
+def delete(request, id):
+    feed = Feed.objects.get(id=id)
+    feed.delete()
+    return redirect('/feeds')
