@@ -14,3 +14,10 @@ def index(request):
 
 def new(request):
     return render(request, 'feedpage/new.html')
+
+
+def show(request, id):
+    feed = Feed.objects.get(id=id)
+    return render(request, 'feedpage/show.html', {'feed': feed})
+
+
