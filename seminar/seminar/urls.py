@@ -16,10 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 import feedpage.views
+import accounts.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('feeds/', include('feedpage.urls')),
-]
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/signup/', accounts.views.signup, name='signup'), # 기존 방식 사용
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
